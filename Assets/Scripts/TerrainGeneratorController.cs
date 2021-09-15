@@ -17,16 +17,14 @@ public class TerrainGeneratorController : MonoBehaviour
     public float areaEndOffset;
 
     private List<GameObject> spawnedTerrain;
+
     private float lastGeneratedPositionX;
-
-    
-    // pool list
-    private Dictionary<string, List<GameObject>> pool;
-
-
     private float lastRemovedPositionX;
 
     private const float debugLineHeight = 10.0f;
+
+    // pool list
+    private Dictionary<string, List<GameObject>> pool;
 
     private void Start()
     {
@@ -38,13 +36,11 @@ public class TerrainGeneratorController : MonoBehaviour
         lastGeneratedPositionX = GetHorizontalPositionStart();
         lastRemovedPositionX = lastGeneratedPositionX - terrainTemplateWidth;
 
-
         foreach (TerrainTemplateController terrain in earlyTerrainTemplates)
         {
             GenerateTerrain(lastGeneratedPositionX, terrain);
             lastGeneratedPositionX += terrainTemplateWidth;
         }
-
 
         while (lastGeneratedPositionX < GetHorizontalPositionEnd())
         {
@@ -59,22 +55,13 @@ public class TerrainGeneratorController : MonoBehaviour
         {
             GenerateTerrain(lastGeneratedPositionX);
             lastGeneratedPositionX += terrainTemplateWidth;
-        }
-    
+        } 
+        
         while (lastRemovedPositionX + terrainTemplateWidth < GetHorizontalPositionStart())
         {
             lastRemovedPositionX += terrainTemplateWidth;
             RemoveTerrain(lastRemovedPositionX);
         }
-    }
-
-    private void GenerateTerrain(float posX, TerrainTemplateController forceterrain = null)
-    {
-        GameObject newTerrain = Instantiate(terrainTemplates[Random.Range(0, terrainTemplates.Count)].gameObject, transform);
-
-        newTerrain.transform.position = new Vector2(posX, 0f);
-
-        spawnedTerrain.Add(newTerrain);
     }
 
     private float GetHorizontalPositionStart()
@@ -85,6 +72,24 @@ public class TerrainGeneratorController : MonoBehaviour
     private float GetHorizontalPositionEnd()
     {
         return gameCamera.ViewportToWorldPoint(new Vector2(1f, 0f)).x + areaEndOffset;
+    }
+
+    private void GenerateTerrain(float posX, TerrainTemplateController forceTerrain = null)
+    {
+        GameObject newTerrain = null;
+
+        if (forceTerrain == null)
+        {
+            newTerrain = GenerateFromPool(terrainTemplates[Random.Range(0, terrainTemplates.Count)].gameObject, transform);
+        }
+        else
+        {
+            newTerrain = GenerateFromPool(forceTerrain.gameObject, transform);
+        }
+
+        newTerrain.transform.position = new Vector2(posX, 0f);
+
+        spawnedTerrain.Add(newTerrain);
     }
 
     private void RemoveTerrain(float posX)
@@ -100,14 +105,12 @@ public class TerrainGeneratorController : MonoBehaviour
                 break;
             }
         }
-    
-
 
         // after found;
         if (terrainToRemove != null)
         {
             spawnedTerrain.Remove(terrainToRemove);
-            Destroy(terrainToRemove);
+            ReturnToPool(terrainToRemove);
         }
     }
 
@@ -131,7 +134,6 @@ public class TerrainGeneratorController : MonoBehaviour
             pool.Add(item.name, new List<GameObject>());
         }
 
-
         // create new one if no item available in pool
         GameObject newItem = Instantiate(item, parent);
         newItem.name = item.name;
@@ -144,7 +146,6 @@ public class TerrainGeneratorController : MonoBehaviour
         {
             Debug.LogError("INVALID POOL ITEM!!");
         }
-
 
         pool[item.name].Add(item);
         item.SetActive(false);

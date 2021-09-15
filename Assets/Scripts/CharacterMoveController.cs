@@ -55,16 +55,14 @@ public class CharacterMoveController : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0) && jumpCount > 0)
         {
-            // if (isOnGround)
-            // {
-                isJumping = true;
-                jumpCount--;
-                sound.PlayJump();
-            // }
-        }
-        else if(Input.GetMouseButtonDown(0) && jumpCount == 0){
-            isDoubleJumping = true;
+            isJumping = true;
+            jumpCount--;
             sound.PlayJump();
+
+            if(Input.GetMouseButtonDown(0) && jumpCount == 0){
+                isDoubleJumping = true;
+                sound.PlayJump();
+            }
         }
 
         // change animation
@@ -80,10 +78,22 @@ public class CharacterMoveController : MonoBehaviour
             lastPositionX += distancePassed;
         }
 
+        //max speed increase when score reach % 10
+        if(score.currentScore % 10 == 0 && score.currentScore != 0){
+            
+        }
+
         // game over
         if (transform.position.y < fallPositionY)
         {
             GameOver();
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision) {
+        if(collision.gameObject.name == "Speed Up"){
+            maxSpeed += 1;
+            Destroy(collision.gameObject);
         }
     }
 
