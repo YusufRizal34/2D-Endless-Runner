@@ -1352,7 +1352,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fda8a118d791c3d40ae625b52fd0d818, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreHighlightRange: 0
+  scoreHighlightRange: 50
   sound: {fileID: 1050912446}
   currentScore: 0
 --- !u!4 &1104359461
