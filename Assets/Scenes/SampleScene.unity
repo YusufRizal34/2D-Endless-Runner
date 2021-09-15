@@ -993,10 +993,10 @@ MonoBehaviour:
   terrainTemplates:
   - {fileID: 1532494409781150684, guid: 15937a0b75a54fb43a514f690d8def7b, type: 3}
   - {fileID: 7612456789997331405, guid: 454b03f61ac9b9946aa907450e9b2917, type: 3}
-  - {fileID: 6061424182771274719, guid: 4ac96b34026c6b84aab4daf1d97791a6, type: 3}
+  - {fileID: 8954015532243253062, guid: 758c2c8cde71e7b4591628b887ad7c03, type: 3}
   terrainTemplateWidth: 15
   earlyTerrainTemplates:
-  - {fileID: 6061424182771274719, guid: 4ac96b34026c6b84aab4daf1d97791a6, type: 3}
+  - {fileID: 8954015532243253062, guid: 758c2c8cde71e7b4591628b887ad7c03, type: 3}
   - {fileID: 1532494409781150684, guid: 15937a0b75a54fb43a514f690d8def7b, type: 3}
   gameCamera: {fileID: 519420031}
   areaStartOffset: -20
@@ -1226,6 +1226,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jump: {fileID: 8300000, guid: 62ca9387f463db84f957608af0754ac3, type: 3}
+  scoreHighlight: {fileID: 8300000, guid: b65706714857e334bb4218295bd78842, type: 3}
 --- !u!82 &1050912447
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1351,6 +1352,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fda8a118d791c3d40ae625b52fd0d818, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreHighlightRange: 0
+  sound: {fileID: 1050912446}
   currentScore: 0
 --- !u!4 &1104359461
 Transform:
