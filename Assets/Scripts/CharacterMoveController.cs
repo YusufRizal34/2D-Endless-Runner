@@ -24,7 +24,6 @@ public class CharacterMoveController : MonoBehaviour
     [Header("Ground Raycast")]
     public float groundRaycastDistance;
     public LayerMask groundLayerMask;
-
     
     [Header("Scoring")]
     public ScoreController score;
@@ -92,8 +91,8 @@ public class CharacterMoveController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision) {
         if(collision.gameObject.name == "Speed Up"){
-            maxSpeed += 1;
-            Destroy(collision.gameObject);
+            maxSpeed += 2;
+            collision.gameObject.SetActive(false);
         }
     }
 

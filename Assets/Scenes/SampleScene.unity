@@ -956,7 +956,7 @@ CompositeCollider2D:
   m_CompositePaths:
     m_Paths: []
   m_VertexDistance: 0.0005
-  m_OffsetDistance: 0.00005
+  m_OffsetDistance: 0
 --- !u!50 &899897023
 Rigidbody2D:
   serializedVersion: 4
@@ -991,15 +991,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   terrainTemplates:
-  - {fileID: 1532494409781150684, guid: 15937a0b75a54fb43a514f690d8def7b, type: 3}
-  - {fileID: 7612456789997331405, guid: 454b03f61ac9b9946aa907450e9b2917, type: 3}
-  - {fileID: 8954015532243253062, guid: 758c2c8cde71e7b4591628b887ad7c03, type: 3}
-  terrainTemplateWidth: 15
+  - {fileID: 3614665718214291024, guid: 706679615cad3174a8041645b89da7d2, type: 3}
+  - {fileID: 6706729288928965456, guid: ef562b79077d22e48bf891598fbc675c, type: 3}
+  - {fileID: 4129692867664423891, guid: 758c2c8cde71e7b4591628b887ad7c03, type: 3}
+  - {fileID: 7348105962900168797, guid: ad30bb87ea072124c83eecf079ef82e2, type: 3}
+  terrainTemplateWidth: 13
   earlyTerrainTemplates:
-  - {fileID: 8954015532243253062, guid: 758c2c8cde71e7b4591628b887ad7c03, type: 3}
-  - {fileID: 1532494409781150684, guid: 15937a0b75a54fb43a514f690d8def7b, type: 3}
+  - {fileID: 7348105962900168797, guid: ad30bb87ea072124c83eecf079ef82e2, type: 3}
+  - {fileID: 7348105962900168797, guid: ad30bb87ea072124c83eecf079ef82e2, type: 3}
+  - {fileID: 7348105962900168797, guid: ad30bb87ea072124c83eecf079ef82e2, type: 3}
   gameCamera: {fileID: 519420031}
-  areaStartOffset: -20
+  areaStartOffset: -10
   areaEndOffset: 10
 --- !u!1 &1024685716
 GameObject:
@@ -1108,7 +1110,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.049963474, y: -0.30263156}
+  m_Offset: {x: 0, y: -0.3}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1119,7 +1121,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.90007305, y: 1.338436}
+  m_Size: {x: 1, y: 1.3}
   m_EdgeRadius: 0
 --- !u!212 &1050912443
 SpriteRenderer:
@@ -1180,7 +1182,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1050912439}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.05, y: 2.31, z: 0}
+  m_LocalPosition: {x: -4.05, y: 1.97, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1352,7 +1354,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fda8a118d791c3d40ae625b52fd0d818, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreHighlightRange: 50
+  scoreHighlightRange: 5
   sound: {fileID: 1050912446}
   currentScore: 0
 --- !u!4 &1104359461
