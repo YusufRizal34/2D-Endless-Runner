@@ -16,7 +16,10 @@ public class CharacterMoveController : MonoBehaviour
     public float jumpAccel;
 
     private bool isJumping;
-    private bool isOnGround;
+    private bool isDoubleJumping;
+    public bool isOnGround;
+    public int extraJump;
+    public int jumpCount;
     
     [Header("Ground Raycast")]
     public float groundRaycastDistance;
@@ -45,14 +48,23 @@ public class CharacterMoveController : MonoBehaviour
     private void Update()
     {
         // read input
-        if (Input.GetMouseButtonDown(0))
+        if (isOnGround)
         {
-            if (isOnGround)
-            {
-                isJumping = true;
+            jumpCount = extraJump;
+        }
 
+        if (Input.GetMouseButtonDown(0) && jumpCount > 0)
+        {
+            // if (isOnGround)
+            // {
+                isJumping = true;
+                jumpCount--;
                 sound.PlayJump();
-            }
+            // }
+        }
+        else if(Input.GetMouseButtonDown(0) && jumpCount == 0){
+            isDoubleJumping = true;
+            sound.PlayJump();
         }
 
         // change animation
@@ -114,9 +126,13 @@ public class CharacterMoveController : MonoBehaviour
             velocityVector.y += jumpAccel;
             isJumping = false;
         }
+        if(isDoubleJumping)
+        {
+            velocityVector.y += jumpAccel;
+            isDoubleJumping = false;
+        }
 
         velocityVector.x = Mathf.Clamp(velocityVector.x + moveAccel * Time.deltaTime, 0.0f, maxSpeed);
-
         rig.velocity = velocityVector;
     }
 
